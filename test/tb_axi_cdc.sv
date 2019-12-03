@@ -155,19 +155,19 @@ module tb_axi_cdc #(
     logic  last;
   } r_chan_t;
 
-  axi_cdc #(
+  axi_cdc_wrap #(
     .AW         (AXI_AW),
     .DW         (AXI_DW),
     .IW         (AXI_IW),
     .UW         (AXI_UW),
     .LOG_DEPTH  (2)
   ) dut (
-    .clk_slv_i  (upstream_clk),
-    .rst_slv_ni (upstream_rst_n),
-    .slv        (upstream),
-    .clk_mst_i  (downstream_clk),
-    .rst_mst_ni (downstream_rst_n),
-    .mst        (downstream)
+    .src_clk_i  (upstream_clk),
+    .src_rst_ni (upstream_rst_n),
+    .src        (upstream),
+    .dst_clk_i  (downstream_clk),
+    .dst_rst_ni (downstream_rst_n),
+    .dst        (downstream)
   );
 
   typedef axi_test::rand_axi_master #(
